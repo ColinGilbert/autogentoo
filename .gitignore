@@ -1,4 +1,5 @@
 **/.*.sw*
 roots/**
-#configs/**
+configs/**
 !configs/common/**
+!configs/build-end/**
