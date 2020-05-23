@@ -1,16 +1,34 @@
 #!/usr/bin/env python3
 
-import sys, os
+import sys, os, string
 
 try:
     arg = sys.argv[1]
 except IndexError:
     raise SystemExit(f"Usage: {sys.argv[0]} <name of system image>")
 
-dir = './roots/' + arg
+
+
+
+ztank = open('./config/build-env/ZFS').read()
+
+ztank = ztank.translate({ord(c): None for c in string.whitespace})
+
+
+os.system('zfs unmount ' + ztank + '/distfiles')
+os.system('zfs unmount ' + ztank + '/portage')
+os.system('zfs unmount ' + ztank + '/pkgdir')
+
+directory = os.getcwd() + '/roots/' + arg
+
 cmd = 'umount -fl '
 
-os.system(cmd + dir + '/dev')
-os.system(cmd + dir + '/sys')
-os.system(cmd + dir + '/proc')
-os.system(cmd + dir + '/tmp')
+os.system(cmd + directory + '/dev')
+os.system(cmd + directory + '/sys')
+os.system(cmd + directory + '/proc')
+os.system(cmd + directory + '/tmp')
+
+os.system('zfs unmount ' + ztank + '/' + arg)
+
+#os.system('rm -rf ' + directory + '/*')
+
