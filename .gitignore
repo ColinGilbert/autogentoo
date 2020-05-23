@@ -1,6 +1,6 @@
 **/.*.sw*
-roots/**
 !**/README.md
-!config/common/*
-!config/build-env/*
-config/**
+!/config/common/*
+!/config/build-env/*
+/config/**
+/roots/**
