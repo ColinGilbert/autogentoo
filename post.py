@@ -27,8 +27,9 @@ os.system(cmd + directory + '/dev')
 os.system(cmd + directory + '/sys')
 os.system(cmd + directory + '/proc')
 os.system(cmd + directory + '/tmp')
+os.system(cmd + directory)
 
-os.system('zfs unmount ' + ztank + '/' + arg)
+#os.system('zfs unmount ' + ztank + '/' + arg)
 
 #os.system('rm -rf ' + directory + '/*')
 
