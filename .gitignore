@@ -4,3 +4,4 @@
 !/config/build-env/*
 /config/**
 /roots/**
+/work/**

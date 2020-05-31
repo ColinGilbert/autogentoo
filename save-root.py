@@ -11,4 +11,5 @@ except IndexError:
 ztank = open('./config/build-env/ZFS').read()
 ztank = ztank.translate({ord(c): None for c in string.whitespace})
 
-os.system('zfs snapshot ' + ztank + '/' + arg + '@' + datetime.now().strftime("%Y:%m:%d-%H:%M:%S"))
+os.system('./cleanup-chroot.py ' + arg)
+os.system('zfs snapshot ' + ztank + '/' + arg + '@' + datetime.now().strftime("%Y-%m:%d-%H:%M:%S"))

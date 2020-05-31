@@ -21,6 +21,7 @@ root_dir = os.getcwd() + '/roots/' + arg
 
 zmount_cmd = 'zfs set mountpoint=' + root_dir + ' ' + ztank + '/' + arg
 #print(zmount_cmd)
+os.system(zmount_cmd)
 zmount_cmd = 'zfs mount ' + ztank + '/' + arg;
 os.system(zmount_cmd)
 
@@ -49,10 +50,9 @@ os.system('mount --rbind --make-rslave /sys ' + root_dir + '/sys')
 os.system('mount --rbind --make-rslave /tmp ' + root_dir + '/tmp')
 
 
-
-os.system('cp -R ./config/common/* ' + root_dir)
-config_dir = './config/roots/' + arg
-os.system('cp -R ' + config_dir + '/* ' + root_dir)
-
-os.system('cat config/common/etc/portage/make.conf ' + config_dir + '/etc/portage/make.conf > ' + root_dir + '/etc/portage/make.conf')
+#TODO: Move to root-bootstrap.py
+#os.system('cp -R ./config/common/etc/resolv.conf ' + root_dir + '/etc')
+#config_dir = './config/roots/' + arg
+#os.system('cp -R ' + config_dir + '/* ' + root_dir)
+#os.system('cat config/common/etc/portage/make.conf ' + config_dir + '/etc/portage/make.conf > ' + root_dir + '/etc/portage/make.conf')
 
