@@ -21,12 +21,14 @@ os.system('zfs unmount ' + ztank + '/pkgdir')
 
 directory = os.getcwd() + '/roots/' + arg
 
+
 cmd = 'umount -fl '
 
 os.system(cmd + directory + '/dev')
 os.system(cmd + directory + '/sys')
 os.system(cmd + directory + '/proc')
 os.system(cmd + directory + '/tmp')
+os.system(cmd + directory + '/var/db/repos/gentoo')
 os.system(cmd + directory)
 
 #os.system('zfs unmount ' + ztank + '/' + arg)
