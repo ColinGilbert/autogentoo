@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# TODO: Apply DRY (ie: Remove copy&paste code) for glory!
 import sys, os, string
 
 readonlyportage = True
@@ -51,10 +51,10 @@ else:
     zmount_cmd = 'zfs mount ' + ztank + '/portage'
     os.system(zmount_cmd)
 
-zmount_cmd = 'zfs set mountpoint=' + ROOT_DIR + '/var/cache/binpkgs ' + ztank + '/pkgdir'
+zmount_cmd = 'zfs set mountpoint=' + ROOT_DIR + '/var/cache/binpkgs ' + ztank + '/pkgdir-' + arg
 #print(zmount_cmd)
 os.system(zmount_cmd)
-zmount_cmd = 'zfs mount ' + ztank + '/pkgdir'
+zmount_cmd = 'zfs mount ' + ztank + '/pkgdir-' + arg
 os.system(zmount_cmd)
 
 
