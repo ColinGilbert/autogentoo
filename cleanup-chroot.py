@@ -16,7 +16,6 @@ ztank = ztank.translate({ord(c): None for c in string.whitespace})
 
 
 os.system('zfs unmount ' + ztank + '/distfiles')
-os.system('zfs unmount ' + ztank + '/portage')
 os.system('zfs unmount ' + ztank + '/pkgdir')
 
 directory = os.getcwd() + '/roots/' + arg
@@ -29,6 +28,7 @@ os.system(cmd + directory + '/sys')
 os.system(cmd + directory + '/proc')
 os.system(cmd + directory + '/tmp')
 os.system(cmd + directory + '/var/db/repos/gentoo')
+os.system(cmd + directory + '/usr/src/linux')
 os.system(cmd + directory)
 
 #os.system('zfs unmount ' + ztank + '/' + arg)

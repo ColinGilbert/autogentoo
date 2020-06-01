@@ -2,13 +2,12 @@
 
 import sys, os, string
 
-
 readonlyportage = True
 
 try:
     arg = sys.argv[1]
 except IndexError:
-    raise SystemExit(f"Usage: {sys.argv[0]} <name of system image>")
+    raise SystemExit(f"Usage: {sys.argv[0]} <name of system image> [rw]")
 
 try:
     r = sys.argv[2]
