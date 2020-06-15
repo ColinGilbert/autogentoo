@@ -3,35 +3,34 @@
 import sys, os, string
 
 try:
-    arg = sys.argv[1]
+    ROOT_FS_NAME = sys.argv[1]
 except IndexError:
     raise SystemExit(f"Usage: {sys.argv[0]} <name of system image>")
 
 
+ZFS_ROOT_DATASET = open('./config/build-env/ZFS').read()
+
+ZFS_ROOT_DATASET = ZFS_ROOT_DATASET.translate({ord(c): None for c in string.whitespace})
 
 
-ztank = open('./config/build-env/ZFS').read()
+os.system('zfs unmount ' + ZFS_ROOT_DATASET + '/distfiles')
+os.system('zfs unmount ' + ZFS_ROOT_DATASET + '/pkgdir')
 
-ztank = ztank.translate({ord(c): None for c in string.whitespace})
-
-
-os.system('zfs unmount ' + ztank + '/distfiles')
-os.system('zfs unmount ' + ztank + '/pkgdir')
-
-directory = os.getcwd() + '/roots/' + arg
+DIRECTORY = os.getcwd() + '/roots/' + ROOT_FS_NAME
 
 
-cmd = 'umount -fl '
+UMOUNT_COMMAND = 'umount -fl '
 
-os.system(cmd + directory + '/dev')
-os.system(cmd + directory + '/sys')
-os.system(cmd + directory + '/proc')
-os.system(cmd + directory + '/tmp')
-os.system(cmd + directory + '/var/db/repos/gentoo')
-os.system(cmd + directory + '/usr/src/linux')
-os.system(cmd + directory)
+os.system(UMOUNT_COMMAND + DIRECTORY + '/dev')
+os.system(UMOUNT_COMMAND + DIRECTORY + '/sys')
+os.system(UMOUNT_COMMAND + DIRECTORY + '/proc')
+os.system(UMOUNT_COMMAND + DIRECTORY + '/tmp')
+os.system(UMOUNT_COMMAND + DIRECTORY + '/var/db/pkg')
+os.system(UMOUNT_COMMAND + DIRECTORY + '/var/db/repos/gentoo')
+os.system(UMOUNT_COMMAND + DIRECTORY + '/usr/src/linux')
+os.system(UMOUNT_COMMAND + DIRECTORY)
 
-#os.system('zfs unmount ' + ztank + '/' + arg)
+os.system('zfs unmount ' + ZFS_ROOT_DATASET + '/' + ROOT_FS_NAME)
 
-#os.system('rm -rf ' + directory + '/*')
+#os.system('rm -rf ' + DIRECTORY + '/*')
 
