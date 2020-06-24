@@ -13,6 +13,10 @@ ZFS_SQUASHED_ROOTFS_DATASET = ZFS_ROOT_DATASET + '/squashed-roots'
 SQUASHED_ROOTS_DIRECTORY = '/' + ZFS_SQUASHED_ROOTFS_DATASET
 
 CURRENT_DIR = os.getcwd()
-SYSTEM_ROOT_DIR = CURRENT_DIR + '/work/staging/' + SYSTEM_ROOT_NAME
+SYSTEM_ROOT_DIR = CURRENT_DIR + '/work/staging'
 
-os.system('mksquashfs ' + SYSTEM_ROOT_DIR + ' ' +  SQUASHED_ROOTS_DIRECTORY + '/' + SYSTEM_ROOT_NAME + '.squash')
+
+os.system('cd ' + SYSTEM_ROOT_DIR + '/dev')
+os.system('mknod -m 600 console c 5 1') # Without this we cannot login to a console. This is because the initramfs doesn't create a console itself by default - even with devtmpfs enabled in-kernel.  TODO: Make optional
+os.system('cd ..')
+os.system('find . -print0 | cpio --null --create --verbose --format=newc | gzip  -9 > ' + SQUASHED_ROOTS_DIRECTORY  + '/initramfs-' + SYSTEM_ROOT_NAME + '.cpio.gz')
