@@ -65,13 +65,4 @@ os.system('mount -t proc /proc ' + ROOT_DIR + '/proc')
 os.system('mount --rbind --make-rslave /sys ' + ROOT_DIR + '/sys')
 os.system('mount --rbind --make-rslave /tmp ' + ROOT_DIR + '/tmp')
 
-INIT_FILE_DIR = CURRENT_DIR + '/config/init'
-os.system('mount --bind ' + CURRENT_DIR + '/config/init ' + ROOT_DIR + '/root/init')
-os.system('cp ' + SYSTEM_ROOT_DIR + '/bin/busybox ' + INIT_FILE_DIR)
-
-#TODO: Move to root-bootstrap.py
-#os.system('cp -R ./config/common/etc/resolv.conf ' + ROOT_DIR + '/etc')
-#config_dir = './config/roots/' + SYSTEM_ROOT_NAME
-#os.system('cp -R ' + config_dir + '/* ' + ROOT_DIR)
-#os.system('cat config/common/etc/portage/make.conf ' + config_dir + '/etc/portage/make.conf > ' + ROOT_DIR + '/etc/portage/make.conf')
-
+#os.system('cp ' + SYSTEM_ROOT_DIR + '/bin/busybox ' + INIT_FILE_DIR)

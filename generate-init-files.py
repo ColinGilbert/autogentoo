@@ -5,11 +5,12 @@ import sys, os, string, shutil, fileinput
 try:
     CONFIG_NAME = sys.argv[1]
     FILESERVER_URL = sys.argv[2]
+    CLIENT_IP = sys.argv[3]
     NIC_LIST = []
-    for a in sys.argv[3:]:
+    for a in sys.argv[4:]:
         NIC_LIST.append(a)
 except IndexError:
-    raise SystemExit("Usage: {sys.argv[0]} <config name> <server url> <nic 0> ... <nic N>")
+    raise SystemExit("Usage: {sys.argv[0]} <config name> <server url> <client IP> <nic 0> ... <nic N>")
 
 if len(NIC_LIST) == 0:
     raise SystemExit("At least one NIC name needed...")
@@ -30,14 +31,20 @@ for n in NIC_LIST:
     if counter < len(NIC_LIST):
         nics_to_use += ' '
 
+# We search and replace within the init file
 with fileinput.FileInput(INIT_FILE_PATH, inplace = True) as file:
     for line in file:
         print(line.replace('SERVER_URL=', 'SERVER_URL=\"' + FILESERVER_URL + '\"'), end = '')
 
 with fileinput.FileInput(INIT_FILE_PATH, inplace = True) as file:
     for line in file:
-        print(line.replace('ETHS=', 'ETHS=\"' + nics_to_use + '\"'), end = '')
+         print(line.replace('ETHS=', 'ETHS=\"' + nics_to_use + '\"'), end = '')
 
+with fileinput.FileInput(INIT_FILE_PATH, inplace = True) as file:
+    for line in file:
+        print(line.replace('CLIENT_IP=', 'CLIENT_IP=\"' + CLIENT_IP + '\"'), end = '')
+
+# Now we replace within the initlist
 with fileinput.FileInput(INIT_LIST_PATH, inplace = True) as file:
     for line in file:
         print(line.replace('INIT', 'init.' + CONFIG_NAME), end = '')

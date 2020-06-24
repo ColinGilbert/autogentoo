@@ -1,3 +1,3 @@
-This is the autogentoo environment. Please run these scripts as root.
+This is the autogentoo environment. Please run any script as root.
 
-Depends: ZFS, Python 3, shell
+Depends: Linux environment (found Alpine and Ubuntu the easiest to use as bootstrap hosts), ZFS, Python 3, squashfs-tools, Gentoo (durr...), rsync, cpio.
