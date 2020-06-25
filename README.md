@@ -1,11 +1,11 @@
-#h1Welcome to the Autogentoo environment.
+# Welcome to the Autogentoo environment.
 
 These scripts should make your life easier without being too intrusive...
 
-#h2Dependencies
+## Dependencies
 A basic understanding of Linux and most specifically the Gentoo meta-distribution. A modern Linux environment with ZFS. Other storage backends are forthcoming due to ZFS being stuck in a rather iffy copyright/patent(?) quagmire. At present I have found Alpine and Ubuntu the easiest to use as bootstrap hosts. Furthermore we use Python 3, rsync, cpio, pigz, and of course some Gentoo stage3's... It creates efi stub kernels for fastest loading.
 
-#h2Design
+## Design
 These tools are used alongside the usual Gentoo workflow and currently generate EFI stub kernels with a rootfs packed into initramfs. At present there is some handcruft involved in setting up stages and kernels: This will change soon as this toolset becomes more sophisticated. I can also guarantee scripts to bootstrap fresh stages and kernels, and another to update a kernel config for use with our toolchain.
 
 A bit of a drag is that as per Gentoo's own recommendations/requirements we end up having to run our scripts as root. I am currently considering a number of tools to ease this security burden. It is strongly recommended to use appropriate network security techniques and computer hygiene.
@@ -16,9 +16,9 @@ Future plans include using a proper relational database to store information, as
 
 We might also choose to port this whole thing to Exherbo and see how things go. The basic message here is to love that this thing exists but not to get too attached to any specifics!
 
-#h2Details
+## Details
 
-#h3Site-specific config is as follows:
+### Site-specific configuration
 ```
 ./config/build-env
 - Used to give values to the build-scripts.
@@ -34,7 +34,7 @@ We might also choose to port this whole thing to Exherbo and see how things go. 
 - These named configs are used to kick off a build. Note that there are a few kernel options that need setting. For example we need to enable an initramfs (compressed with pigz, a faster version of gzip) and the initramfs source should be 'root/init/initramfs.cpio.gz'.
 ```
 
-#h3As for the scripts themselves
+### The scripts
 ```
 ./bootstrap-workdir.py
 - You'll want to call this one at the beginning of your day's work/
