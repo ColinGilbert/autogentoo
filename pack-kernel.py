@@ -3,13 +3,13 @@
 import sys, os, string, shutil
 
 try:
-    KERNEL_SRC = sys.argv[1]
-    KERNEL_CONF = sys.argv[2]
+    ROOTFS = sys.argv[1]
+    KERNEL_SRC = sys.argv[2]
+    KERNEL_CONF = sys.argv[3]
 except IndexError:
-    raise SystemExit(f"Usage: {sys.argv[0]} <kernel sources> <kernel config>")
+    raise SystemExit(f"Usage: {sys.argv[0]} <rootfs> <kernel sources> <kernel config>")
 
 CURRENT_DIR = os.getcwd()
-ROOTFS = 'boot'
 SYSTEM_ROOT_DIR = CURRENT_DIR + '/roots/' + ROOTFS
 OUTPUT_DIR = CURRENT_DIR + '/work'
 #KCONFIG_FILE = CURRENT_DIR + '/config/kernel/' + KERNEL_CONF + '.kconfig'
