@@ -12,7 +12,7 @@ A bit of a drag is that as per Gentoo's own recommendations/requirements we end 
 
 This thing is made to be scripted, with consistent arguments being used throughout. Feel free to use the ones listed below.
 
-Future plans include using a proper relational database to store information, as well as a task queuer for massively-parallel builds. Currently we rely upon Gentoo's built-in *binpkg-multi-instance* feature-flag but this doesn't scale well to multiple build hosts, multiple toolchains, and multiple architectures. My eventual goal is to establish a RESTful API for doing such work scalably and securely. Also, a manner of generating, automatically disposing of, securely storing, and integrating one-time keys, or possibly even leveraging LDAP+Kerberos are things worth investigating.
+Future plans include using a proper relational database to store information, as well as a task queuer for massively-parallel builds. Currently we rely upon Gentoo's built-in *binpkg-multi-instance* feature-flag but this doesn't scale well to multiple build hosts, multiple toolchains, and multiple architectures. My eventual goal is to establish a RESTful API for doing such work scalably and securely. Also, a manner of generating, automatically disposing of, securely storing, and integrating one-time keys are things worth investigating.
 
 We might also choose to port this whole thing to Exherbo and see how things go. The basic message here is to love that this thing exists but not to get too attached to any specifics!
 
