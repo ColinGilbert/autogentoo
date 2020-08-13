@@ -60,6 +60,9 @@ ZMOUNT_COMMAND = 'zfs mount ' + ZFS_ROOT_DATASET + '/pkgdir'
 os.system(ZMOUNT_COMMAND)
 
 
+#AUTOGENTOO_SCRIPTS_DIR = ROOT_DIR + '/autogentoo-scripts'
+#os.system('mkdir ' + AUTOGENTOO_SCRIPTS_DIR)
+#os.system('mount --bind ./chroot-scripts ' + AUTOGENTOO_SCRIPTS_DIR)
 os.system('mount --rbind --make-rslave /dev ' + ROOT_DIR + '/dev')
 os.system('mount -t proc /proc ' + ROOT_DIR + '/proc')
 os.system('mount --rbind --make-rslave /sys ' + ROOT_DIR + '/sys')

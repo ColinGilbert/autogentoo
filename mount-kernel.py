@@ -29,7 +29,7 @@ KERNEL_FOLDER_PATH = ROOTFS_PATH + '/usr/src/linux-autogentoo'
 os.system('zfs set mountpoint=\'' + KERNEL_FOLDER_PATH + '\' ' + KERNEL_DATASET_NAME)
 os.system('zfs unmount ' + KERNEL_DATASET_NAME)
 
-INITRAMFS_PATH = CURRENT_DIR + '/work/staging'
+INITRAMFS_PATH = CURRENT_DIR + '/work'
 #os.system('rm ' + KERNEL_FOLDER_PATH + '/.config') 
 os.system('zfs mount ' + KERNEL_DATASET_NAME)
 os.system('cp ' + KERNEL_CONFIG_FILE + ' ' + KERNEL_FOLDER_PATH + '/.config')
